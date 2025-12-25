@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="RailwayTicket" Language="1033" Version="1.0.0.0" Manufacturer="MyCompany" UpgradeCode="11111111-1111-1111-1111-111111111111">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"/>
+    <MajorUpgrade DowngradeErrorMessage="Newer version already installed."/>
+    <MediaTemplate EmbedCab="yes"/>
+
+    <Feature Id="ProductFeature" Title="RailwayTicket" Level="1">
+      <ComponentGroupRef Id="ProductComponents"/>
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="RailwayTicket"/>
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="RailwayTicket"/>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="MainExe" Guid="11111111-2222-3333-4444-555555555555">
+        <File Id="RailwayTicket.exe" Source="..\RailwayTicket.exe" KeyPath="yes"/>
+        <Shortcut Id="StartMenuShortcut" Directory="ApplicationProgramsFolder" Name="Railway Ticket" Advertise="no"/>
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>
